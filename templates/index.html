@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>讲故事 · AI 故事绘本</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-icon">📖</div>
+        <h1 class="hero-title">讲故事</h1>
+        <p class="hero-desc">输入一个名字或主题，AI 为你创作专属图文绘本</p>
+      </div>
+    </header>
+
+    <!-- Input -->
+    <section class="input-section">
+      <div class="input-card">
+        <div class="input-row">
+          <input
+            type="text"
+            id="themeInput"
+            class="theme-input"
+            placeholder="小狐狸、海洋探险、友谊、李明的冒险..."
+            maxlength="50"
+            autofocus
+          />
+          <button id="generateBtn" class="generate-btn" onclick="generateStory()">
+            <span class="btn-icon">✨</span>
+            <span class="btn-label">创作故事</span>
+          </button>
+        </div>
+        <div class="examples">
+          试试：
+          <span class="example-tag" onclick="setTheme('小狐狸学魔法')">小狐狸学魔法</span>
+          <span class="example-tag" onclick="setTheme('深海探险')">深海探险</span>
+          <span class="example-tag" onclick="setTheme('星星的秘密')">星星的秘密</span>
+          <span class="example-tag" onclick="setTheme('小熊和森林')">小熊和森林</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Status -->
+    <div class="status-bar" id="statusBar">
+      <div class="status-spinner"></div>
+      <span id="statusText"></span>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Storybook -->
+    <main class="storybook" id="storybook">
+      <div class="book-cover" id="bookCover">
+        <div class="cover-decoration">✦</div>
+        <h2 class="book-title" id="bookTitle"></h2>
+        <div class="cover-decoration">✦</div>
+      </div>
+      <div class="pages-grid" id="pagesGrid"></div>
+      <div class="pdf-bar" id="pdfBar" style="display:none">
+        <button class="pdf-btn" onclick="downloadPDF()">
+          <span>📄</span> 下载 PDF 绘本
+        </button>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Page template -->
+  <template id="pageTpl">
+    <div class="story-page">
+      <div class="page-header">
+        <span class="page-num"></span>
+      </div>
+      <div class="page-image-wrap">
+        <div class="image-placeholder">
+          <div class="placeholder-spinner"></div>
+          <span>绘图中…</span>
+        </div>
+        <img class="page-image" src="" alt="" loading="lazy" />
+      </div>
+      <div class="page-text"></div>
+    </div>
+  </template>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
